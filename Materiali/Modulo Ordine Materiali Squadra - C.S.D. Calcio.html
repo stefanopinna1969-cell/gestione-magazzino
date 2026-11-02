@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Modulo Ordine Materiali Squadra - BVI Centro Sportivo Desiano</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 15px; color: #0f172a; background-color: #ffffff; }
+    .header { border-bottom: 2px solid #0056b3; padding-bottom: 8px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+    .header-logo-container { display: flex; align-items: center; gap: 12px; }
+    .club-logo { width: 65px; height: 65px; object-fit: contain; }
+    h1 { margin: 0; font-size: 17px; text-transform: uppercase; letter-spacing: 0.5px; color: #003366; }
+    .subtitle { font-size: 10px; color: #475569; font-weight: 600; margin-top: 3px; }
+    .grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+    .box { border: 1px solid #cbd5e1; padding: 6px 10px; border-radius: 6px; background: #f8fafc; font-size: 10px; }
+    .box strong { color: #334155; }
+    
+    table { width: 100%; border-collapse: collapse; font-size: 9.5px; }
+    th, td { border: 1px solid #cbd5e1; padding: 4px 6px; text-align: left; vertical-align: middle; }
+    th { background: #003366; color: white; text-transform: uppercase; font-size: 8.5px; letter-spacing: 0.5px; }
+    
+    .section-header { background: #003366; color: #ffffff; font-weight: 700; text-transform: uppercase; font-size: 9.5px; letter-spacing: 0.5px; padding: 5px 8px; }
+    .kit-subheader { background: #e2e8f0; font-weight: 700; color: #0f172a; font-size: 9.5px; letter-spacing: 0.3px; border-top: 2px solid #cbd5e1; }
+    
+    .item-img { width: 30px; height: 30px; object-fit: contain; display: block; margin: 0 auto; background: #fff; border-radius: 3px; border: 1px solid #e2e8f0; }
+    .item-name { font-weight: 700; color: #1e293b; font-size: 10px; }
+    .sub-item { padding-left: 12px; font-weight: 600; color: #334155; }
+    .text-center { text-align: center; }
+    .bg-light { background-color: #f1f5f9; }
+    .size-box { display: inline-block; font-size: 8px; color: #334155; font-weight: 600; }
+    
+    .signatures { margin-top: 25px; display: flex; justify-content: space-between; page-break-inside: avoid; }
+    .sig-box { width: 42%; text-align: center; border-top: 1.5px solid #003366; padding-top: 4px; font-size: 9.5px; font-weight: 600; }
+    
+    @media print {
+      body { margin: 0; }
+      .no-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-logo-container">
+      <img src="Logo_desiano_calcio.jpg" class="club-logo" alt="Logo BVI Centro Sportivo Desiano">
+      <div>
+        <h1>BVI CENTRO SPORTIVO DESIANO — Modulo Ordine & Presa in Consegna</h1>
+        <div class="subtitle">Stagione Sportiva 2025/2026 | Documento Ufficiale Magazzino</div>
+      </div>
+    </div>
+    <div style="text-align: right; font-size: 9.5px; color: #64748b; min-width: 110px;">
+      <div>Modulo N°: ________</div>
+      <div>Data: ____/____/2026</div>
+    </div>
+  </div>
+
+  <div class="grid-info">
+    <div class="box">
+      <strong>SQUADRA / CATEGORIA:</strong> ___________________________________<br><br>
+      <strong>RESPONSABILE / DIRIGENTE:</strong> ______________________________
+    </div>
+    <div class="box">
+      <strong>NOME ATLETA / ROSA:</strong> ___________________________________<br><br>
+      <strong>RECAPITO TELEFONICO / MAIL:</strong> ___________________________
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 38px;" class="text-center">Foto</th>
+        <th>Articolo / Composizione Kit</th>
+        <th class="text-center" style="width: 310px;">DETTAGLIO TAGLIE E QUANTITÀ</th>
+        <th style="width: 40px;" class="text-center bg-light">TOT</th>
+        <th style="width: 140px;">Note / Consegna</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- KIT NUOVO ISCRITTO -->
+      <tr>
+        <td colspan="5" class="kit-subheader">📦 KIT NUOVO ISCRITTO (COMPOSIZIONE DETTAGLIATA)</td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="tuta_rappresentanza.png" class="item-img" alt="Tuta"></td>
+        <td class="sub-item">1. Tuta Rappresentanza</td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="polo.png" class="item-img" alt="Polo"></td>
+        <td class="sub-item">2. Polo Rappresentanza</td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="bermuda_rappresentanza.png" class="item-img" alt="Bermuda"></td>
+        <td class="sub-item">3. Bermuda Rappresentanza</td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="felpa_allenamento.png" class="item-img" alt="Felpa"></td>
+        <td class="sub-item">4. Felpa Allenamento</td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="tshirt.png" class="item-img" alt="T-Shirt"></td>
+        <td class="sub-item">5. T-Shirt Atleta</td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="pantaloncino_allenamento.png" class="item-img" alt="Bermuda Allenamento"></td>
+        <td class="sub-item">6. Bermuda Allenamento</td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="calzettoni.png" class="item-img" alt="Calzettoni"></td>
+        <td class="sub-item">7. Calzettoni</td>
+        <td class="text-center">
+          <span class="size-box">S (31-34):</span> ___ &nbsp; <span class="size-box">M (35-38):</span> ___ &nbsp; <span class="size-box">L (39-42):</span> ___ &nbsp; <span class="size-box">XL (43-46):</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+
+      <!-- KIT RINNOVO -->
+      <tr>
+        <td colspan="5" class="kit-subheader">🔄 KIT RINNOVO (COMPOSIZIONE DETTAGLIATA)</td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="polo.png" class="item-img" alt="Polo"></td>
+        <td class="sub-item">1. Polo Rappresentanza</td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="bermuda_rappresentanza.png" class="item-img" alt="Bermuda"></td>
+        <td class="sub-item">2. Bermuda Rappresentanza</td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="tshirt.png" class="item-img" alt="T-Shirt"></td>
+        <td class="sub-item">3. T-Shirt Atleta</td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="pantaloncino_allenamento.png" class="item-img" alt="Bermuda Allenamento"></td>
+        <td class="sub-item">4. Bermuda Allenamento</td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="calzettoni.png" class="item-img" alt="Calzettoni"></td>
+        <td class="sub-item">5. Calzettoni</td>
+        <td class="text-center">
+          <span class="size-box">S (31-34):</span> ___ &nbsp; <span class="size-box">M (35-38):</span> ___ &nbsp; <span class="size-box">L (39-42):</span> ___ &nbsp; <span class="size-box">XL (43-46):</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+
+      <!-- SEZIONE CAPI SINGOLI ED EXTRA (INCLUSI CAPI DEI KIT) -->
+      <tr>
+        <td colspan="5" class="section-header">ALTRI MATERIALI E REINTEGRI SINGOLI</td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="tuta_rappresentanza.png" class="item-img" alt="Tuta"></td>
+        <td><span class="item-name">Tuta Rappresentanza (Singola)</span></td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="polo.png" class="item-img" alt="Polo"></td>
+        <td><span class="item-name">Polo Rappresentanza (Singola)</span></td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="bermuda_rappresentanza.png" class="item-img" alt="Bermuda"></td>
+        <td><span class="item-name">Bermuda Rappresentanza (Singolo)</span></td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="felpa_allenamento.png" class="item-img" alt="Felpa"></td>
+        <td><span class="item-name">Felpa Allenamento (Singola)</span></td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="tshirt.png" class="item-img" alt="T-Shirt"></td>
+        <td><span class="item-name">T-Shirt Atleta (Singola)</span></td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="pantaloncino_allenamento.png" class="item-img" alt="Bermuda Allenamento"></td>
+        <td><span class="item-name">Bermuda Allenamento (Singolo)</span></td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="pantalone_allenamento.png" class="item-img" alt="Pantalone Allenamento"></td>
+        <td><span class="item-name">Pantalone Lungo Allenamento</span></td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="giubbotto.png" class="item-img" alt="Giubbotto"></td>
+        <td><span class="item-name">Giubbotto Anorak</span></td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="k-way.png" class="item-img" alt="K-Way"></td>
+        <td><span class="item-name">K-Way / Antivento</span></td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="termica.png" class="item-img" alt="Termica"></td>
+        <td><span class="item-name">Maglia Termica</span></td>
+        <td class="text-center">
+          <span class="size-box">XS:</span> ___ &nbsp; <span class="size-box">S:</span> ___ &nbsp; <span class="size-box">M:</span> ___ &nbsp; <span class="size-box">L:</span> ___ &nbsp; <span class="size-box">XL:</span> ___ &nbsp; <span class="size-box">XXL:</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="calzettoni.png" class="item-img" alt="Calzettoni"></td>
+        <td><span class="item-name">Calzettoni (Singoli)</span></td>
+        <td class="text-center">
+          <span class="size-box">S (31-34):</span> ___ &nbsp; <span class="size-box">M (35-38):</span> ___ &nbsp; <span class="size-box">L (39-42):</span> ___ &nbsp; <span class="size-box">XL (43-46):</span> ___
+        </td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="zaino.png" class="item-img" alt="Zaino"></td>
+        <td><span class="item-name">Zaino Sportivo</span></td>
+        <td class="text-center"><span class="size-box">TAGLIA UNICA (TU):</span> _____</td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="borsone_medio.png" class="item-img" alt="Borsone Medio"></td>
+        <td><span class="item-name">Borsone Medio</span></td>
+        <td class="text-center"><span class="size-box">TAGLIA UNICA (TU):</span> _____</td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="text-center"><img src="borsone_grande.png" class="item-img" alt="Borsone Grande"></td>
+        <td><span class="item-name">Borsone Grande</span></td>
+        <td class="text-center"><span class="size-box">TAGLIA UNICA (TU):</span> _____</td>
+        <td class="text-center bg-light"></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="signatures">
+    <div class="sig-box">Firma Responsabile Magazzino</div>
+    <div class="sig-box">Firma Dirigente / Responsabile Squadra</div>
+  </div>
+
+</body>
+</html>
