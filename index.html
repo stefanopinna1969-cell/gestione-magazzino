@@ -81,17 +81,20 @@
       </nav>
     </div>
 
-    <!-- User Footer Sidebar -->
-    <div class="p-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-      <div class="flex items-center space-x-2">
-        <div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-white">CS</div>
-        <div>
-          <p class="font-medium text-slate-200">Magazziniere ASD</p>
-          <p class="text-[10px]">C.S.D. Calcio Org.</p>
-        </div>
-      </div>
+<!-- User Footer Sidebar -->
+<div class="p-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 no-print">
+  <div class="flex items-center space-x-2">
+    <div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-white"><i data-lucide="user" class="w-4 h-4"></i></div>
+    <div>
+      <p id="sidebar-role-name" class="font-medium text-slate-200">Caricamento...</p>
+      <p class="text-[10px]">C.S.D. Calcio Org.</p>
     </div>
-  </aside>
+  </div>
+  <button onclick="logout()" class="p-2 bg-slate-800 hover:bg-rose-600 hover:text-white rounded transition text-slate-300" title="Cambia Ruolo / Esci">
+    <i data-lucide="log-out" class="w-4 h-4"></i>
+  </button>
+</div>
+</aside>
 
   <!-- CONTENUTO PRINCIPALE -->
   <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
@@ -1214,6 +1217,67 @@
     </div>
   </div>
 
+<!-- MODALE: GESTIONE MAGLIE SQUADRA -->
+  <div id="modal-maglie" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 z-[70] hidden">
+    <div class="bg-white rounded-xl max-w-3xl w-full p-6 shadow-xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center border-b pb-3">
+        <div>
+          <h3 id="modal-maglie-title" class="font-bold text-slate-800 text-lg">Gestione Maglie</h3>
+          <p class="text-xs text-slate-500">Assegna numeri, taglie e mute agli atleti della squadra.</p>
+        </div>
+        <button onclick="closeGestioneMaglie()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <!-- Form inserimento nuova maglia -->
+      <form id="form-aggiungi-maglia" onsubmit="addMagliaSquadra(event)" class="grid grid-cols-1 sm:grid-cols-5 gap-2 bg-slate-50 p-3 rounded-lg border border-slate-200">
+        <div class="sm:col-span-1">
+          <label class="block text-[10px] font-bold text-slate-600 uppercase mb-1">Nome Muta</label>
+          <input type="text" id="maglia-muta" placeholder="Es. Home/Away" required class="w-full border border-slate-300 rounded p-1.5 text-xs focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+        <div class="sm:col-span-1">
+          <label class="block text-[10px] font-bold text-slate-600 uppercase mb-1">N. Maglia</label>
+          <input type="number" id="maglia-numero" placeholder="Es. 10" required class="w-full border border-slate-300 rounded p-1.5 text-xs focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+        <div class="sm:col-span-1">
+          <label class="block text-[10px] font-bold text-slate-600 uppercase mb-1">Taglia</label>
+          <input type="text" id="maglia-taglia" placeholder="Es. M / L" required class="w-full border border-slate-300 rounded p-1.5 text-xs focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+        <div class="sm:col-span-1">
+          <label class="block text-[10px] font-bold text-slate-600 uppercase mb-1">Nome Atleta</label>
+          <input type="text" id="maglia-atleta" placeholder="Nome Cognome" required class="w-full border border-slate-300 rounded p-1.5 text-xs focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+        <div class="sm:col-span-1 flex items-end pb-0.5">
+          <button type="submit" id="btn-add-maglia" class="w-full px-2 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs font-medium flex items-center justify-center space-x-1 transition">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Aggiungi</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Lista Maglie -->
+      <div class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm mt-4">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-slate-50 border-b border-slate-200 text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
+            <tr>
+              <th class="p-2 pl-4">Muta</th>
+              <th class="p-2 text-center">N. Maglia</th>
+              <th class="p-2 text-center">Taglia</th>
+              <th class="p-2">Atleta</th>
+              <th class="p-2 text-right pr-4">Azioni</th>
+            </tr>
+          </thead>
+          <tbody id="maglie-table-body" class="divide-y divide-slate-100 text-xs">
+            <!-- Popolato via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="flex justify-end pt-3 border-t">
+        <button type="button" onclick="closeGestioneMaglie()" class="px-4 py-2 border border-slate-300 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">Chiudi</button>
+      </div>
+    </div>
+  </div>
+
 <!-- CONTENITORE PER LA STAMPA / EXPORT PDF -->
   <div id="printableArea" class="hidden no-print"></div>
 
@@ -1235,7 +1299,75 @@
     let currentExportMode = 'all';
     let currentAssignKitData = null;
 
-    // Matrice completa a 16 taglie
+    let currentRole = localStorage.getItem('csd_calcio_role') || null;
+
+function checkAuth() {
+  if (!currentRole) {
+    document.getElementById('login-modal').classList.remove('hidden');
+  } else {
+    document.getElementById('login-modal').classList.add('hidden');
+    const roleNames = { 'admin': 'Amministratore', 'magazziniere': 'Magazziniere', 'visitatore': 'Visitatore' };
+    document.getElementById('sidebar-role-name').innerText = roleNames[currentRole];
+    applyPermissions();
+  }
+}
+
+function loginAs(role) {
+  currentRole = role;
+  localStorage.setItem('csd_calcio_role', role);
+  checkAuth();
+}
+
+function logout() {
+  currentRole = null;
+  localStorage.removeItem('csd_calcio_role');
+  checkAuth();
+}
+
+function applyPermissions() {
+  const isVisitatore = currentRole === 'visitatore';
+  const isAdmin = currentRole === 'admin';
+
+  // 1. Visitatori: nascondi azioni di scrittura, modifica, assegnazione, stampa ed esportazione
+  const actionSelectors = [
+    'button[onclick^="open"]',             // Blocca tutti i modali (Aggiungi Nuovo, Stampa, Export)
+    'button[onclick^="edit"]',             // Blocca i pulsanti di Modifica (editSquadra, editArticolo, ecc.)
+    'button[onclick^="delete"]',           // Blocca eliminazioni
+    'button[onclick^="toggleLock"]',       // Blocca lucchetti
+    'button[onclick^="toggleRestituzione"]',// Blocca resi
+    'button[onclick^="assegna"]',          // Blocca assegnazioni rapide
+    'button[onclick^="eseguiChiusura"]',   // Blocca chiusura stagione
+    'button[onclick^="copy"]',             // Blocca duplicazione
+    'button[onclick^="exportJSONBackup"]'  // Blocca salvataggio/export del backup JSON
+  ];
+  
+  document.querySelectorAll(actionSelectors.join(', ')).forEach(btn => {
+    const onclickAttr = btn.getAttribute('onclick') || '';
+    
+    // I pulsanti per CHIUDERE i modali devono funzionare sempre
+    if (onclickAttr.includes('close')) return;
+    
+    // Applica o rimuovi la classe hidden in base al ruolo visitatore
+    isVisitatore ? btn.classList.add('hidden') : btn.classList.remove('hidden');
+  });
+
+  // 2. Gestione specifica del caricamento Backup (Visitatore e Admin POSSONO, Magazziniere NO)
+  const importLabel = document.querySelector('label:has(input#import-file)');
+  if (importLabel) {
+    if (isVisitatore || isAdmin) {
+      importLabel.classList.remove('hidden');
+    } else {
+      importLabel.classList.add('hidden');
+    }
+  }
+
+  // 3. Magazzinieri: limitazione di azioni critiche distruttive
+  if (!isAdmin && !isVisitatore) {
+    document.querySelectorAll('button[onclick^="eseguiChiusuraStagione"]').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('button[onclick^="delete"]').forEach(el => el.classList.add('hidden'));
+  }
+}
+	// Matrice completa a 16 taglie
     const TAGLIE_MATRICE_LISTA = ['8a', '12a', '16a', '5-6', '7-8', '9-10', '11-12', '13-14', 'xys', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl'];
 
     const defaultData = {
@@ -1269,20 +1401,22 @@
       ]
     };
 
-    document.addEventListener("DOMContentLoaded", async () => {
-      lucide.createIcons();
-      await initIndexedDB();
-      await loadAllDataFromDB();
-      
-      TAGLIE_MATRICE_LISTA.forEach(t => {
-        const input = document.getElementById(`mat-${t}`);
-        if (input) {
-          input.addEventListener('input', updateMatriceInputStyles);
-        }
-      });
+document.addEventListener("DOMContentLoaded", async () => {
+  lucide.createIcons();
+  checkAuth();
+  
+  // Inizializza IndexedDB e carica i dati salvati
+  await initIndexedDB();
+  
+  TAGLIE_MATRICE_LISTA.forEach(t => {
+    const input = document.getElementById(`mat-${t}`);
+    if (input) {
+      input.addEventListener('input', updateMatriceInputStyles);
+    }
+  });
 
-      renderAll();
-    });
+  renderAll();
+});
 
 async function toggleLockSquadra(id) {
   const item = squadre.find(s => s.id === id);
@@ -1295,50 +1429,48 @@ async function toggleLockSquadra(id) {
 }
 
     function initIndexedDB() {
-      return new Promise((resolve, reject) => {
-        const request = indexedDB.open(DB_NAME, DB_VERSION);
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
 
-        request.onupgradeneeded = (event) => {
-          const dbInstance = event.target.result;
-          const stores = ['squadre', 'responsabili', 'fornitori', 'inventario', 'assegnazioni', 'movimenti'];
+    request.onupgradeneeded = (event) => {
+      const dbInstance = event.target.result;
+      const stores = ['squadre', 'responsabili', 'fornitori', 'inventario', 'assegnazioni', 'movimenti'];
 
-          stores.forEach(storeName => {
-            if (!dbInstance.objectStoreNames.contains(storeName)) {
-              dbInstance.createObjectStore(storeName, { keyPath: 'id' });
-            }
-          });
-        };
-
-        request.onsuccess = async (event) => {
-          db = event.target.result;
-          resolve(db);
-        };
-
-        request.onerror = (event) => {
-          console.error("Errore nell'apertura del database IndexedDB:", event.target.error);
-          reject(event.target.error);
-        };
+      stores.forEach(storeName => {
+        if (!dbInstance.objectStoreNames.contains(storeName)) {
+          dbInstance.createObjectStore(storeName, { keyPath: 'id' });
+        }
       });
-    }
+    };
+
+    request.onsuccess = async (event) => {
+      db = event.target.result;
+      await loadAllDataFromDB(); // Carica i dati appena il DB è pronto
+      resolve(db);
+    };
+
+    request.onerror = (event) => {
+      console.error("Errore nell'apertura del database IndexedDB:", event.target.error);
+      reject(event.target.error);
+    };
+  });
+}
 
     async function loadAllDataFromDB() {
-      squadre = await getAllFromStore('squadre');
-      responsabili = await getAllFromStore('responsabili');
-      fornitori = await getAllFromStore('fornitori');
-      inventario = await getAllFromStore('inventario');
-      assegnazioni = await getAllFromStore('assegnazioni');
-      movimenti = await getAllFromStore('movimenti');
+  try {
+    squadre = await getAllFromStore('squadre');
+    responsabili = await getAllFromStore('responsabili');
+    fornitori = await getAllFromStore('fornitori');
+    inventario = await getAllFromStore('inventario');
+    assegnazioni = await getAllFromStore('assegnazioni');
+    movimenti = await getAllFromStore('movimenti');
 
-      if (squadre.length === 0 && inventario.length === 0) {
-        await populateDefaultData();
-        squadre = await getAllFromStore('squadre');
-        responsabili = await getAllFromStore('responsabili');
-        fornitori = await getAllFromStore('fornitori');
-        inventario = await getAllFromStore('inventario');
-        assegnazioni = await getAllFromStore('assegnazioni');
-        movimenti = await getAllFromStore('movimenti');
-      }
-    }
+    // N.B. Rimosso il ripopolamento automatico (populat10:13 04/11/2026eDefaultData) 
+    // per evitare di azzerare i dati reali dell'utente all'avvio.
+  } catch (error) {
+    console.error("Errore nel caricamento dei dati da IndexedDB:", error);
+  }
+}
 
     async function populateDefaultData() {
       for (const key of Object.keys(defaultData)) {
@@ -1590,7 +1722,8 @@ async function toggleLockSquadra(id) {
       }
 
       lucide.createIcons();
-    }
+applyPermissions();    
+}
 
     function renderSquadre() {
       const tbody = document.getElementById('squadre-table-body');
@@ -1915,6 +2048,11 @@ actionHtml += `
     <button onclick="toggleLockSquadra(${s.id})" class="text-slate-500 hover:text-amber-600 p-1" title="${s.locked ? 'Sblocca Squadra' : 'Blocca Squadra (Prevenzione Modifica e Cancellazione)'}">
       <i data-lucide="${s.locked ? 'lock' : 'unlock'}" class="w-4 h-4 ${s.locked ? 'text-amber-500' : ''}"></i>
     </button>
+`;
+actionHtml += `
+    <button onclick="openGestioneMaglie(${s.id})" class="text-slate-500 hover:text-blue-600 p-1" title="Gestione Maglie e Assegnazione Numeri">
+      <i data-lucide="shirt" class="w-4 h-4"></i>
+    </button>
     <button onclick="editSquadra(${s.id})" class="${s.locked ? 'text-slate-300 cursor-not-allowed' : 'text-slate-500 hover:text-indigo-600'} p-1" title="Modifica Squadra"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
     <button onclick="deleteSquadra(${s.id})" class="${s.locked ? 'text-slate-300 cursor-not-allowed' : 'text-slate-500 hover:text-rose-600'} p-1" title="Elimina Squadra"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
   </div>
@@ -1936,6 +2074,7 @@ actionHtml += `
       if (typeof lucide !== 'undefined') {
         lucide.createIcons();
       }
+applyPermissions();
     }
 
     function setStagioneSportivaSquadreFilter() {
@@ -2385,9 +2524,9 @@ const data = {
   responsabileId: resp1Val ? parseInt(resp1Val) : null,
   responsabile2Id: resp2Val ? parseInt(resp2Val) : null,
   materialiRichiesti: finalMaterialiRichiesti,
-  locked: existingSquadra ? (existingSquadra.locked || false) : false // Conserva lo stato di blocco
+  maglie: existingSquadra ? (existingSquadra.maglie || []) : [], // <-- AGGIUNGI QUESTA RIGA
+  locked: existingSquadra ? (existingSquadra.locked || false) : false
 };
-
       if(id) {
         const index = squadre.findIndex(s => s.id === parseInt(id));
         squadre[index] = data;
@@ -2969,7 +3108,9 @@ async function deleteSquadra(id) {
       });
 
       lucide.createIcons();
-    }
+    
+applyPermissions();
+}
 
     function openResponsabileModal(id = null) {
       const preview = document.getElementById('resp-img-preview');
@@ -3109,6 +3250,7 @@ async function deleteSquadra(id) {
       });
 
       lucide.createIcons();
+applyPermissions();
     }
 
     function openFornitoreModal(id = null) {
@@ -3558,7 +3700,8 @@ async function deleteSquadra(id) {
       });
 
       lucide.createIcons();
-    }
+applyPermissions();
+}
 
 async function toggleLockArticolo(id) {
   const item = inventario.find(i => i.id === id);
@@ -3949,6 +4092,7 @@ function editArticolo(id) {
       if (typeof lucide !== 'undefined') {
         lucide.createIcons();
       }
+applyPermissions();
     }
 
     function setStagioneSportivaFilter() {
@@ -4334,7 +4478,8 @@ function editArticolo(id) {
         `;
       });
       lucide.createIcons();
-    }
+    applyPermissions();
+}
 
     async function deleteMovimento(id) {
       if(confirm("Sei sicuro di voler eliminare questa voce dal registro movimenti?")) {
@@ -5242,6 +5387,105 @@ function editArticolo(id) {
       };
       reader.readAsText(file);
     }
+// --- INIZIO FUNZIONI GESTIONE MAGLIE ---
+    let currentSquadraMaglieId = null;
+
+    function openGestioneMaglie(squadraId) {
+      currentSquadraMaglieId = squadraId;
+      const s = squadre.find(sq => sq.id === squadraId);
+      if(!s) return;
+
+      document.getElementById('modal-maglie-title').innerText = `Gestione Maglie: ${s.nome}`;
+      document.getElementById('form-aggiungi-maglia').reset();
+      
+      renderMaglieTable(s);
+      document.getElementById('modal-maglie').classList.remove('hidden');
+      
+      // Controllo permessi per visitatore (nasconde il form)
+      const isVisitatore = (localStorage.getItem('csd_calcio_role') === 'visitatore');
+      document.getElementById('btn-add-maglia').disabled = isVisitatore;
+      if(isVisitatore) {
+        document.getElementById('form-aggiungi-maglia').classList.add('opacity-50', 'pointer-events-none');
+      } else {
+        document.getElementById('form-aggiungi-maglia').classList.remove('opacity-50', 'pointer-events-none');
+      }
+    }
+
+    function closeGestioneMaglie() {
+      document.getElementById('modal-maglie').classList.add('hidden');
+      currentSquadraMaglieId = null;
+    }
+
+    function renderMaglieTable(squadra) {
+      const tbody = document.getElementById('maglie-table-body');
+      tbody.innerHTML = '';
+
+      if (!squadra.maglie || squadra.maglie.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400 italic">Nessuna maglia assegnata a questa squadra.</td></tr>`;
+        return;
+      }
+
+      // Ordina per numero di maglia
+      const maglieOrdinate = [...squadra.maglie].sort((a, b) => a.numero - b.numero);
+
+      maglieOrdinate.forEach((m) => {
+        tbody.innerHTML += `
+          <tr class="hover:bg-slate-50 border-b border-slate-100">
+            <td class="p-2 pl-4 font-semibold text-slate-700">${m.muta}</td>
+            <td class="p-2 text-center font-bold text-slate-900 text-sm">${m.numero}</td>
+            <td class="p-2 text-center text-slate-600">${m.taglia}</td>
+            <td class="p-2 font-medium text-slate-800">${m.atleta}</td>
+            <td class="p-2 text-right pr-4">
+              <button onclick="deleteMaglia(${m.id})" class="text-slate-400 hover:text-rose-600 p-1 transition" title="Rimuovi Assegnazione Maglia">
+                <i data-lucide="trash" class="w-4 h-4"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+      lucide.createIcons();
+      applyPermissions(); // Nasconde il tasto elimina per i visitatori
+    }
+
+    async function addMagliaSquadra(e) {
+      e.preventDefault();
+      if(!currentSquadraMaglieId) return;
+
+      const s = squadre.find(sq => sq.id === currentSquadraMaglieId);
+      if(!s) return;
+
+      if (!s.maglie) s.maglie = [];
+
+      const nuovaMaglia = {
+        id: Date.now(),
+        muta: document.getElementById('maglia-muta').value,
+        numero: parseInt(document.getElementById('maglia-numero').value),
+        taglia: document.getElementById('maglia-taglia').value,
+        atleta: document.getElementById('maglia-atleta').value
+      };
+
+      s.maglie.push(nuovaMaglia);
+      await saveToStore('squadre', s);
+      
+      document.getElementById('form-aggiungi-maglia').reset();
+      renderMaglieTable(s);
+      
+      // Focus per inserimento rapido continuo
+      document.getElementById('maglia-numero').focus();
+    }
+
+    async function deleteMaglia(magliaId) {
+      if(!currentSquadraMaglieId) return;
+      const s = squadre.find(sq => sq.id === currentSquadraMaglieId);
+      if(!s || !s.maglie) return;
+
+      if(confirm("Rimuovere questa assegnazione maglia/atleta?")) {
+        s.maglie = s.maglie.filter(m => m.id !== magliaId);
+        await saveToStore('squadre', s);
+        renderMaglieTable(s);
+      }
+    }
+    // --- FINE FUNZIONI GESTIONE MAGLIE ---
   
 async function eseguiChiusuraStagione() {
   const confirm1 = confirm("⚠️ ATTENZIONE: Stai per eseguire la Chiusura di Fine Stagione.\n\nQuesta operazione eliminerà TUTTE le assegnazioni, i movimenti e le richieste di materiale delle squadre.\nLe scorte in magazzino (inventario e giacenze), i fornitori e i responsabili verranno mantenuti intatti.\n\nSei sicuro di voler procedere?");
@@ -5290,5 +5534,21 @@ async function eseguiChiusuraStagione() {
   alert("✅ Chiusura Stagione completata con successo! Il gestionale è pronto per il nuovo anno.");
 }
 </script>
+
+<div id="login-modal" class="fixed inset-0 bg-slate-900 z-[100] flex flex-col items-center justify-center p-4 hidden">
+  <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full p-6 text-center space-y-4">
+    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2">
+      <i data-lucide="shield-check" class="w-8 h-8"></i>
+    </div>
+    <h2 class="text-xl font-bold text-slate-800">C.S.D. CALCIO</h2>
+    <p class="text-sm text-slate-500">Seleziona il tuo profilo di accesso.</p>
+    <div class="space-y-3 pt-2">
+      <button onclick="loginAs('admin')" class="w-full p-3 bg-slate-800 text-white rounded-lg font-medium hover:bg-slate-900 transition">Amministratore</button>
+      <button onclick="loginAs('magazziniere')" class="w-full p-3 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition">Magazziniere (Scrittura)</button>
+      <button onclick="loginAs('visitatore')" class="w-full p-3 bg-slate-100 text-slate-700 rounded-lg font-medium hover:bg-slate-200 transition">Visitatore (Solo Lettura)</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
